@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Architect: Planet Creation Simulation</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Raleway:wght@400&display=swap" rel="stylesheet">
+    <!-- Three.js Script -->
+    <script src="https://unpkg.com/three@0.168.0/build/three.min.js"></script>
+</head>
+<body>
+    <!-- Background Video -->
+    <video autoplay muted loop id="backgroundVideo">
+        <source src="background.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+    <!-- Start Page -->
+    <div id="startPage" class="container">
+        <h1>Cosmic Architect: Planet Creation</h1>
+        <p>Begin your journey as a cosmic architect. Create planets, define the atmosphere, and see if life can thrive!</p>
+        <button id="startButton">Start Simulation</button>
+    </div>
+
+    <!-- Simulation Page -->
+    <div id="simulationPage" class="container hidden">
+        <!-- Planet container and questions arranged side by side -->
+        <div id="planetContainer"></div>
+        <div id="questions">
+            <p id="questionText">Start creating your planet! Select the planet’s size:</p>
+            <div id="choices"></div>
+            <p id="factText"></p>
+        </div>
+    </div>
+
+    <!-- End Page -->
+    <div id="endPage" class="container hidden">
+        <div id="finalPlanetContainer"></div>
+        <div id="endContent">
+            <h2>Your Planet</h2>
+            <div id="planetStats"></div>
+            <label for="planetName">Name your planet:</label>
+            <input type="text" id="planetName" value="Unnamed Planet">
+            <button id="submitNameButton">Submit</button>
+            <div id="description"></div>
+            <button id="newSimulationButton">Start New Simulation</button>
+        </div>
+    </div>
+
+    <!-- Include your script with type="module" -->
+    <script type="module" src="planet.js"></script>
+</body>
+</html>

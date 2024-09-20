@@ -1,0 +1,287 @@
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: #0d0d0d;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    text-align: center;
+}
+
+.container {
+    text-align: center;
+    width: 100%;
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+#planetContainer, #finalPlanetContainer {
+    flex: 1;
+    max-width: 50%;
+    height: auto;
+    aspect-ratio: 1;
+    margin-right: 20px;
+    background-color: transparent;
+}
+
+.choice-btn {
+    background-color: #16a085;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    margin: 10px 0; 
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 100%; 
+    max-width: 300px; 
+}
+
+.choice-btn:hover {
+    background-color: #0e6655;
+}
+
+#questions {
+    margin-top: 20px;
+}
+
+#questions p {
+    font-size: 18px;
+}
+
+#factText {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #a0a0a0;
+}
+
+#endPage {
+    margin-top: 50px;
+}
+
+#planetStats {
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+#simulationPage {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; 
+    margin-top: 20px;
+    width: 100%;
+    min-height: 80vh; 
+}
+
+#planetContainer {
+    flex: 1;
+    max-width: 50%;
+    height: auto;
+    aspect-ratio: 1;
+}
+
+#questions {
+    flex: 1;
+    max-width: 50%;
+    margin-left: 20px;
+    text-align: center; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#questionText {
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#choices {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#factText {
+    font-size: 14px;
+    color: #a0a0a0;
+    margin-top: 20px;
+    text-align: center;
+    padding-right: 30px;
+}
+
+@media screen and (max-width: 768px) {
+    #simulationPage {
+        flex-direction: column;
+        align-items: center;
+        min-height: auto; 
+    }
+
+    #questions {
+        margin-left: 0;
+        margin-top: 20px;
+        max-width: 100%;
+    }
+
+    #planetContainer {
+        max-width: 100%;
+        margin-right: 0;
+    }
+
+    .choice-btn {
+        max-width: 100%; 
+    }
+
+    #endContent input[type="text"] {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+#endPage {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; 
+    margin-top: 20px;
+    width: 100%;
+    min-height: 80vh; 
+}
+
+#planetContainer,
+#finalPlanetContainer {
+    flex: 1;
+    max-width: 50%;
+    height: auto;
+    aspect-ratio: 1;
+    margin-right: 20px;
+}
+
+#endContent {
+    flex: 1;
+    max-width: 50%;
+    margin-left: 20px;
+    text-align: center; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#endContent h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+#planetStats {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#endContent label,
+#endContent input[type="text"] {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+#endContent input[type="text"] {
+    padding: 5px;
+    width: 80%;
+    max-width: 300px;
+    text-align: center;
+}
+
+#submitNameButton {
+    margin-bottom: 5px;
+}
+
+#description {
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#newSimulationButton {
+    margin-top: 5px;
+}
+
+#backgroundVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1; 
+    background: url('path/to/fallback-image.jpg') no-repeat;
+    background-size: cover;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); 
+    z-index: -1; 
+}
+
+#planetNameDisplay {
+    font-size: 32px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-shadow: 2px 2px 4px #000000;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+#planetNameDisplay {
+    font-size: 32px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-shadow: 2px 2px 4px #000000;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10; 
+}
+
