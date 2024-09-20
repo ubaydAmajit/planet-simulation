@@ -17,7 +17,7 @@ const newSimulationButton = document.getElementById('newSimulationButton');
 const planetContainer = document.getElementById('planetContainer');
 const finalPlanetContainer = document.getElementById('finalPlanetContainer');
 
-let planetRadius = 150;
+let planetRadius = 130;
 let waterLevel = 50;
 let atmosphereColor = 0xFFFFFF;
 let volcanicActivity = "None";
