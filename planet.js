@@ -1,5 +1,6 @@
 import * as THREE from 'https://unpkg.com/three@0.168.0/build/three.module.js';
 
+// === DOM ELEMENTS ===
 const startPage = document.getElementById('startPage');
 const simulationPage = document.getElementById('simulationPage');
 const endPage = document.getElementById('endPage');
@@ -9,7 +10,7 @@ const factText = document.getElementById('factText');
 const planetStatsDiv = document.getElementById('planetStats');
 const planetNameInput = document.getElementById('planetName');
 const descriptionDiv = document.getElementById('description');
-const planetNameDisplay = document.createElement('p'); // Element to show the name next to the planet
+const planetNameDisplay = document.createElement('p'); 
 planetNameDisplay.id = "planetNameDisplay";
 const startButton = document.getElementById('startButton');
 const submitNameButton = document.getElementById('submitNameButton');
@@ -17,11 +18,12 @@ const newSimulationButton = document.getElementById('newSimulationButton');
 const planetContainer = document.getElementById('planetContainer');
 const finalPlanetContainer = document.getElementById('finalPlanetContainer');
 
+// === PLANET PROPERTIES ===
 let planetRadius = 130;
 let waterLevel = 50;
 let atmosphereColor = 0xFFFFFF;
 let volcanicActivity = "None";
-let lifePossibility = 0;
+let lifePossibility = 0; // Habitability score (0-100%)
 let starColor = 0xFFFFAA;
 let textureFolder = 'rocky';
 let lights = [];
@@ -29,6 +31,7 @@ let finalLights = [];
 let atmosphereOpacity = 0.01;
 const initialCameraZ = 3;
 
+// === SIMULATION QUESTIONS === Each question affects planet properties and life possibility score
 const questions = [
     {
         question: "Select the surface type of your planet:",
@@ -80,6 +83,7 @@ const questions = [
     }
 ];
 
+// === THREE.JS VARIABLES ===
 let currentQuestionIndex = 0;
 let scene, camera, renderer, planetMesh, atmosphereMesh;
 let waterLayer, sunLight;
@@ -87,27 +91,33 @@ let isAnimating = true;
 let finalScene, finalCamera, finalRenderer, finalPlanetMesh, finalAtmosphereMesh;
 let isFinalAnimating = true;
 
+// === EVENT LISTENERS ===
 startButton.addEventListener('click', showSimulationPage);
 submitNameButton.addEventListener('click', submitPlanetName);
 newSimulationButton.addEventListener('click', startNewSimulation);
 
+// === PLANET GENERATION ===
 let planetGeometry = new THREE.SphereGeometry(5, 32, 32);
 
+// Generate procedural planet terrain with water levels
 function generatePlanetWithWater(geometry, waterLevel = 0.3) {
     let noise = new SimplexNoise();
     geometry.vertices.forEach(vertex => {
         let elevation = noise.noise(vertex.x * 0.5, vertex.y * 0.5, vertex.z * 0.5);
         vertex.multiplyScalar(1 + elevation * 0.1);
         if (elevation < waterLevel) {
-            vertex.color = new THREE.Color(0x3498db);
+            // Water color
+            vertex.color = new THREE.Color(0x3498db); 
         } else {
-            vertex.color = new THREE.Color(0x8b4513);
+            // Land color
+            vertex.color = new THREE.Color(0x8b4513); 
         }
     });
     geometry.colorsNeedUpdate = true;
     geometry.verticesNeedUpdate = true;
 }
 
+// Create transparent water layer over planet surface
 function createWaterLayer() {
     const waterMaterial = new THREE.MeshPhongMaterial({
         color: 0x1f8ef1,
@@ -116,10 +126,11 @@ function createWaterLayer() {
         opacity: 0.6
     });
     waterLayer = new THREE.Mesh(planetGeometry, waterMaterial);
-    waterLayer.scale.set(1.01, 1.01, 1.01);
+    waterLayer.scale.set(1.01, 1.01, 1.01); // Slightly larger than planet
     scene.add(waterLayer);
 }
 
+// Add directional lighting to simulate star illumination
 function addSunReflection() {
     sunLight = new THREE.DirectionalLight(0xffffff, 1);
     sunLight.position.set(50, 50, 50);
@@ -130,6 +141,7 @@ function addSunReflection() {
 
 generatePlanetWithWater(planetGeometry);
 
+// === PAGE NAV===
 function showSimulationPage() {
     startPage.classList.add('hidden');
     simulationPage.classList.remove('hidden');
@@ -137,6 +149,7 @@ function showSimulationPage() {
     init3DScene();
 }
 
+// === 3D SCENE INITIALIZATION ===
 function init3DScene() {
     scene = new THREE.Scene();
     const aspectRatio = planetContainer.clientWidth / planetContainer.clientHeight;
@@ -144,7 +157,7 @@ function init3DScene() {
     camera.position.z = initialCameraZ;
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(planetContainer.clientWidth, planetContainer.clientWidth);
-    renderer.setClearColor(0x000000, 0);
+    renderer.setClearColor(0x000000, 0); // Transparent background
     renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.gammaFactor = 2.2;
     planetContainer.appendChild(renderer.domElement);
@@ -276,65 +289,75 @@ function adjustCameraPosition(scale) {
     camera.updateProjectionMatrix();
 }
 
+// === CHOICE HANDLERS === Each choice affects planet properties and habitability score
+
+// Surface type 
 function handleSurfaceTypeChoice(choiceIndex) {
     const surfaces = ["rocky", "icy", "ocean", "gas", "custom"];
     textureFolder = surfaces[choiceIndex];
-    if (choiceIndex === 0) lifePossibility += 20;
-    else if (choiceIndex === 1) lifePossibility -= 10;
-    else if (choiceIndex === 2) lifePossibility += 40;
-    else if (choiceIndex === 4) lifePossibility += 10;
-    else lifePossibility -= 50;
+    if (choiceIndex === 0) lifePossibility += 20;      // Rocky: Good for life +20
+    else if (choiceIndex === 1) lifePossibility -= 10; // Icy: Harsh conditions -10
+    else if (choiceIndex === 2) lifePossibility += 40; // Ocean: Excellent for life +40
+    else if (choiceIndex === 4) lifePossibility += 10; // Custom: Moderate +10
+    else lifePossibility -= 50;                        // Gas Giant: No solid surface -50
 }
 
+// Planet size affects atmosphere retention
 function handlePlanetSizeChoice(choiceIndex) {
-    if (choiceIndex === 0) planetRadius = 50;
-    else if (choiceIndex === 1) planetRadius = 100;
-    else planetRadius = 150;
+    if (choiceIndex === 0) planetRadius = 50;      // Small (Mars-sized)
+    else if (choiceIndex === 1) planetRadius = 100; // Medium (Earth-sized)
+    else planetRadius = 150;                        // Large (Super-Earth)
 }
 
+// Distance from star affects temperature and liquid water
 function handleDistanceChoice(choiceIndex) {
-    if (choiceIndex === 0) lifePossibility -= 20;
-    else if (choiceIndex === 1) lifePossibility += 50;
-    else lifePossibility -= 30;
+    if (choiceIndex === 0) lifePossibility -= 20;      // Close: Too hot
+    else if (choiceIndex === 1) lifePossibility += 50; // Habitable zone: Perfect
+    else lifePossibility -= 30;                        // Far: Too cold
 }
 
+// Atmosphere composition affects breathability and greenhouse effect
 function handleAtmosphereChoice(choiceIndex) {
     if (choiceIndex === 0) {
-        atmosphereColor = 0xFF4500;
+        atmosphereColor = 0xFF4500;    // Thick CO2: Orange/red
         atmosphereOpacity = 0.5;
     } else if (choiceIndex === 1) {
-        atmosphereColor = 0x87CEFA;
+        atmosphereColor = 0x87CEFA;    // Thin: Light blue
         atmosphereOpacity = 0.3;
     } else {
-        atmosphereColor = 0xADD8E6;
+        atmosphereColor = 0xADD8E6;    // Balanced: Blue (Earth-like)
         atmosphereOpacity = 0.4;
     }
     loadAtmosphere();
 }
 
+// Water coverage affects life potential
 function handleWaterChoice(choiceIndex) {
-    if (choiceIndex === 0) waterLevel = 10;
-    else if (choiceIndex === 1) waterLevel = 50;
-    else waterLevel = 90;
+    if (choiceIndex === 0) waterLevel = 10;        // Dry: Desert world
+    else if (choiceIndex === 1) waterLevel = 50;   // Some water: Balanced
+    else waterLevel = 90;                          // Oceans: Water world
 }
 
+// Volcanic activity affects atmosphere formation
 function handleVolcanicChoice(choiceIndex) {
     if (choiceIndex === 0) volcanicActivity = "None";
     else if (choiceIndex === 1) volcanicActivity = "Moderate";
     else volcanicActivity = "High";
 }
 
+// Magnetic field protects atmosphere from stellar wind
 function handleMagneticFieldChoice(choiceIndex) {
-    if (choiceIndex === 0) lifePossibility += 30;
-    else lifePossibility -= 20;
+    if (choiceIndex === 0) lifePossibility += 30;  // Yes: Protects atmosphere
+    else lifePossibility -= 20;                    // No: Atmosphere loss
 }
 
+// Star type affects radiation and energy received
 function handleStarTypeChoice(choiceIndex) {
     if (choiceIndex === 0) {
-        starColor = 0xFF4500;
+        starColor = 0xFF4500;          // Red dwarf: Cooler, red light
         lifePossibility -= 10;
     } else if (choiceIndex === 1) {
-        starColor = 0xFFFFAA;
+        starColor = 0xFFFFAA;          // Yellow dwarf: Sun-like
         lifePossibility += 10;
     } else {
         starColor = 0x99CCFF;

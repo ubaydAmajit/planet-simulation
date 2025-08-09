@@ -1,4 +1,31 @@
 {
+  "name": "cosmic-architect-planet-simulation",
+  "version": "1.0.0",
+  "description": "Interactive 3D planet creation simulator teaching planetary science and habitability through hands-on cosmic architecture",
+  "main": "planet.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "three-js",
+    "webgl",
+    "3d-graphics",
+    "educational",
+    "simulation",
+    "astronomy",
+    "planetary-science",
+    "interactive",
+    "javascript"
+  ],
+  "author": "Ubayd Amajit",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ubaydamajit/planet-simulation.git"
+  },
   "dependencies": {
     "three": "^0.168.0"
   },

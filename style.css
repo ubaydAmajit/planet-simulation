@@ -1,6 +1,7 @@
+/* === GLOBAL STYLES === */
 body {
-    font-family: 'Raleway', sans-serif;
-    background-color: #0d0d0d;
+    font-family: 'Raleway', sans-serif; 
+    background-color: #0d0d0d; 
     color: white;
     display: flex;
     flex-direction: column;
@@ -16,18 +17,21 @@ body {
     width: 100%;
 }
 
+/* === TYPOGRAPHY === */
 h1 {
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Orbitron', sans-serif; 
     font-size: 48px;
     margin-bottom: 20px;
 }
 
+/* === UTILITY CLASSES === */
 .hidden {
-    display: none !important;
+    display: none !important; 
 }
 
+/* === BUTTONS === */
 button {
-    background-color: #3498db;
+    background-color: #3498db; 
     color: white;
     padding: 10px 20px;
     border: none;
@@ -38,20 +42,22 @@ button {
 }
 
 button:hover {
-    background-color: #2980b9;
+    background-color: #2980b9; 
 }
 
+/* === 3D PLANET CONTAINERS === */
 #planetContainer, #finalPlanetContainer {
     flex: 1;
-    max-width: 50%;
+    max-width: 50%; 
     height: auto;
-    aspect-ratio: 1;
+    aspect-ratio: 1; 
     margin-right: 20px;
-    background-color: transparent;
+    background-color: transparent; 
 }
 
+/* === CHOICE BUTTONS === */
 .choice-btn {
-    background-color: #16a085;
+    background-color: #16a085; 
     color: white;
     padding: 10px 20px;
     border: none;
@@ -60,13 +66,14 @@ button:hover {
     font-size: 16px;
     border-radius: 5px;
     width: 100%; 
-    max-width: 300px; 
+    max-width: 300px;
 }
 
 .choice-btn:hover {
-    background-color: #0e6655;
+    background-color: #0e6655; 
 }
 
+/* === QUESTION SECTION === */
 #questions {
     margin-top: 20px;
 }
@@ -78,9 +85,10 @@ button:hover {
 #factText {
     margin-top: 20px;
     font-size: 14px;
-    color: #a0a0a0;
+    color: #a0a0a0; 
 }
 
+/* === END PAGE LAYOUT === */
 #endPage {
     margin-top: 50px;
 }
@@ -95,9 +103,10 @@ input[type="text"] {
     margin-bottom: 20px;
 }
 
+/* === SIMULATION PAGE LAYOUT === */
 #simulationPage {
     display: flex;
-    flex-direction: row;
+    flex-direction: row; 
     justify-content: center;
     align-items: center; 
     margin-top: 20px;
@@ -125,119 +134,51 @@ input[type="text"] {
 #questionText {
     font-size: 18px;
     margin-bottom: 20px;
-    text-align: center;
+    font-weight: bold;
 }
 
 #choices {
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 20px;
+    gap: 10px; 
 }
 
-#factText {
-    font-size: 14px;
-    color: #a0a0a0;
-    margin-top: 20px;
-    text-align: center;
-    padding-right: 30px;
-}
-
-@media screen and (max-width: 768px) {
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
     #simulationPage {
-        flex-direction: column;
+        flex-direction: column; 
         align-items: center;
-        min-height: auto; 
     }
-
-    #questions {
-        margin-left: 0;
-        margin-top: 20px;
-        max-width: 100%;
+    
+    #planetContainer, #questions {
+        max-width: 90%; 
+        margin: 10px 0;
     }
-
-    #planetContainer {
-        max-width: 100%;
-        margin-right: 0;
-    }
-
-    .choice-btn {
-        max-width: 100%; 
-    }
-
-    #endContent input[type="text"] {
-        width: 100%;
-        max-width: none;
+    
+    h1 {
+        font-size: 32px; 
     }
 }
 
-#endPage {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center; 
-    margin-top: 20px;
-    width: 100%;
-    min-height: 80vh; 
-}
-
-#planetContainer,
-#finalPlanetContainer {
-    flex: 1;
-    max-width: 50%;
-    height: auto;
-    aspect-ratio: 1;
-    margin-right: 20px;
-}
-
+/* === END PAGE SPECIFIC === */
 #endContent {
-    flex: 1;
-    max-width: 50%;
-    margin-left: 20px;
-    text-align: center; 
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-#endContent h2 {
-    font-size: 36px;
-    margin-bottom: 20px;
-}
-
-#planetStats {
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-#endContent label,
-#endContent input[type="text"] {
-    font-size: 18px;
-    margin-bottom: 5px;
-}
-
-#endContent input[type="text"] {
-    padding: 5px;
-    width: 80%;
-    max-width: 300px;
+    justify-content: center;
     text-align: center;
 }
 
 #submitNameButton {
-    margin-bottom: 5px;
-}
-
-#description {
-    font-size: 16px;
-    margin-bottom: 20px;
-    text-align: center;
+    margin-top: 5px;
 }
 
 #newSimulationButton {
     margin-top: 5px;
 }
 
+/* === BACKGROUND VIDEO === */
 #backgroundVideo {
     position: fixed;
     right: 0;
@@ -251,6 +192,7 @@ input[type="text"] {
     background-size: cover;
 }
 
+/* === OVERLAY EFFECTS === */
 .overlay {
     position: fixed;
     top: 0;
@@ -261,27 +203,18 @@ input[type="text"] {
     z-index: -1; 
 }
 
+/* === PLANET NAME DISPLAY === */
 #planetNameDisplay {
     font-size: 32px;
     font-weight: bold;
     color: #FFFFFF;
-    text-shadow: 2px 2px 4px #000000;
+    text-shadow: 2px 2px 4px #000000; 
     position: absolute;
     top: 10px;
     left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-}
-
-#planetNameDisplay {
-    font-size: 32px;
-    font-weight: bold;
-    color: #FFFFFF;
-    text-shadow: 2px 2px 4px #000000;
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%); 
     z-index: 10; 
 }
+
+
 
