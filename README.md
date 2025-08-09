@@ -69,8 +69,6 @@ Each variable you adjust represents the delicate balance required for life, refl
    - Navigate to `http://localhost:5173` (or the port shown in terminal)
    - Start creating your cosmic worlds!
 
-### Alternative: Direct Browser Usage
-Simply open `index.html` in a modern web browser - no build process required!
 
 ## 🎯 How to Use
 
