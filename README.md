@@ -1,11 +1,21 @@
 # 🌍 Cosmic Architect: Planet Creation Simulation
 
-An interactive 3D web application that lets you design and create your own planets while learning about planetary science and habitability. Act as a cosmic architect to build worlds and discover if they can support life!
+An interactive 3D web application that explores humanity's deepest questions about existence and the rarity of life in the universe. Act as a cosmic architect to design worlds and discover if they can support life, while engaging with profound philosophical and astrobiological concepts.
+
+> *"This project represents more than coding; it embodies humanity's timeless quest to comprehend the cosmos."* - From the [Philosophical Paper](cosmic-architect-paper.md)
+
+**🚀 [Try the Live Demo](https://ubaydamajit.github.io/planet-simulation/)**
 
 ![Three.js](https://img.shields.io/badge/Three.js-v0.168.0-blue)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow)
 
-**🚀 [Try the Live Demo](https://ubaydamajit.github.io/planet-simulation/)**
+## 🎭 Philosophy Behind the Project
+
+Cosmic Architect emerged from a desire to explore fundamental questions: **Why is life so rare in the universe?** and **What conditions are necessary for its existence?** This simulation transcends mere technical demonstration—it's a philosophical meditation on creation, existence, and our place in the cosmos.
+
+Each variable you adjust represents the delicate balance required for life, reflecting how minor changes in atmospheric composition, volcanic activity, or distance from a star can drastically alter a planet's habitability. Through this digital act of creation, users engage with the same questions that have puzzled humanity for centuries.
+
+📖 **[Read the Full Philosophical Paper](cosmic-architect-paper.md)** - *A deeper exploration of the scientific and philosophical foundations behind this project.*
 
 ## ✨ Features
 
